@@ -29,3 +29,13 @@ label 'ps-local'
         }
     }
 }
+
+ stage('Sonar'){
+            steps{
+                script {
+                 withSonarQubeEnv(credentialsId: 'sonar') {
+                 sh 'mvn sonar:sonar -Dsonar.projectName=test -Dsonar.projectKey=test'
+                }
+                }
+            }
+        }
