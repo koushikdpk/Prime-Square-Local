@@ -37,20 +37,20 @@ tpipeline{
 	                echo "Initiating deployment"
             }
         }
-    stage('Approval') {
-            steps {
-                script {
-                    emailext subject: 'Deployment Approval',
-                             body: 'Please review and approve the deployment.',
-                             to: 'kdamaraju@primesoft.net',
-                             replyTo: env.CHANGE_AUTHOR_EMAIL,
-                             mimeType: 'text/html'
-			input 'Deploy to Production?' // Prompt for approval
-                }
+   //  stage('Approval') {
+   //          steps {
+   //              script {
+   //                  emailext subject: 'Deployment Approval',
+   //                           body: 'Please review and approve the deployment.',
+   //                           to: 'kdamaraju@primesoft.net',
+   //                           replyTo: env.CHANGE_AUTHOR_EMAIL,
+   //                           mimeType: 'text/html'
+			// input 'Deploy to Production?' // Prompt for approval
+   //              }
                 
 
-	    }
-    }
+	  //   }
+    //}
     
     }
     }
