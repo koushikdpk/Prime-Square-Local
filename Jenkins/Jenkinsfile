@@ -47,6 +47,9 @@ pipeline{
                              mimeType: 'text/html'
                 }
                 input 'Deploy to Production?' , ok: 'Yes'
+
+	    }
+    }
     
     }
     }
