@@ -10,7 +10,7 @@ label 'ps-local'
         maven "mvn"
     }
 
-    // stages {
+ stages {
     //     stage('Build') {
     //         steps {
     //             // Get some code from a GitHub repository
