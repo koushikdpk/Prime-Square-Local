@@ -10,18 +10,18 @@ label 'ps-local'
         maven "mvn"
     }
 
-    stages {
-        stage('Build') {
-            steps {
-                // Get some code from a GitHub repository
-              git credentialsId: 'Git-hub', url: "${Repo}"
+    // stages {
+    //     stage('Build') {
+    //         steps {
+    //             // Get some code from a GitHub repository
+    //           git credentialsId: 'Git-hub', url: "${Repo}"
               
-                // Run Maven on a Unix agent.
+    //             // Run Maven on a Unix agent.
                 
 
-            }
+    //         }
 
-        }
+    //     }
         stage('maven') {
             steps {
         sh "mvn clean install"
