@@ -42,7 +42,7 @@ pipeline{
                 script {
                     emailext subject: 'Deployment Approval',
                              body: 'Please review and approve the deployment.',
-                             to: 'csiripurapu@primesoft.net',
+                             to: 'k747295@gmail.com',
                              replyTo: env.CHANGE_AUTHOR_EMAIL,
                              mimeType: 'text/html'
 			input 'Deploy to Production?' // Prompt for approval
