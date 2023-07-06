@@ -46,7 +46,7 @@ pipeline{
                              replyTo: env.CHANGE_AUTHOR_EMAIL,
                              mimeType: 'text/html'
                 }
-                input 'Deploy to Production?' , ok: 'Yes'
+                input message: 'Do you want to approve the deployment?', ok: 'Yes'
 
 	    }
     }
