@@ -27,9 +27,6 @@ label 'ps-local'
         sh "mvn clean install"
             }
         }
-    }
-}
-
  stage('Sonar'){
             steps{
                 script {
@@ -39,3 +36,5 @@ label 'ps-local'
                 }
             }
         }
+ }
+}
