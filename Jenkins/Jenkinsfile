@@ -9,7 +9,7 @@ pipeline{
                 echo "im running on this node : $NODE_NAME"
                 echo "im running with this build number: $BUILD_NUMBER"
                 echo "Hi from $env.Name"
-                echo "This is my branchname: $BRANCH_NAME"
+                //echo "This is my branchname: $BRANCH_NAME"
                 echo "This is my job name: $JOB_NAME"
             }
         }
