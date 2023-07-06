@@ -1,17 +1,36 @@
 pipeline{
     agent any
     stages{
-        stage('NODE details'){
+        stage('Build'){
              environment{
-                    Name="koushik"
+                    stage="Build"
                 }
             steps{
                 echo "im running on this node : $NODE_NAME"
                 echo "im running with this build number: $BUILD_NUMBER"
-                echo "Hi from $env.Name"
+                echo "Hi from $env.stage"
                 //comment echo "This is my branchname: $BRANCH_NAME"
                 echo "This is my job name: $JOB_NAME"
             }
         }
+        stage('Test'){
+            environment{
+                    stage="Test"
+                }
+            steps{
+                echo "im running on this node : $NODE_NAME"
+                echo "im running with this build number: $BUILD_NUMBER"
+                echo "Hi from $env.stage"
+            }
+        } 
+        stage('Deploy'){
+            environment{
+                    stage="Deploy"
+                }
+            steps{
+                echo "im running on this node : $NODE_NAME"
+                echo "Hi from $env.stage"
+            }
+        }
     }
-}
+    }
