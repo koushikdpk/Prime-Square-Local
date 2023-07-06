@@ -1,17 +1,56 @@
 pipeline{
     agent any
     stages{
-        stage('NODE details'){
+        stage('Build'){
              environment{
-                    Name="koushik"
+                    stage="Build"
                 }
             steps{
                 echo "im running on this node : $NODE_NAME"
                 echo "im running with this build number: $BUILD_NUMBER"
-                echo "Hi from $env.Name"
+                echo "Hi from $env.stage"
                 //comment echo "This is my branchname: $BRANCH_NAME"
                 echo "This is my job name: $JOB_NAME"
             }
         }
+        stage('Test'){
+            environment{
+                    stage="Test"
+                }
+            steps{
+                echo "im running on this node : $NODE_NAME"
+                echo "im runningss with this build number: $BUILD_NUMBER"
+                echo "Hi from $env.stage"
+            }
+        } 
+        stage('Deploy'){
+            environment{
+                    stage="Deploy"
+                }
+            steps{
+                echo "Hi from $env.stage"
+                // Create approval button with 15mtimeout .
+	                timeout(time: 15, unit: "MINUTES") {
+	                    input message: 'Do you want to approve the deployment?', ok: 'Yes'
+	                }
+			
+	                echo "Initiating deployment"
+            }
+        }
+    stage('Approval') {
+            steps {
+                script {
+                    emailext subject: 'Deployment Approval',
+                             body: 'Please review and approve the deployment.',
+                             to: 'kdamaraju@primesoft.net',
+                             replyTo: env.CHANGE_AUTHOR_EMAIL,
+                             mimeType: 'text/html'
+			input 'Deploy to Production?' // Prompt for approval
+                }
+                
+
+	    }
     }
-}
+    
+    }
+    }
