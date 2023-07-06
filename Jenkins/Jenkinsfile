@@ -28,8 +28,13 @@ pipeline{
                     stage="Deploy"
                 }
             steps{
-                echo "im running on this node : $NODE_NAME"
                 echo "Hi from $env.stage"
+                // Create approval button with 15mtimeout .
+	                timeout(time: 15, unit: "MINUTES") {
+	                    input message: 'Do you want to approve the deployment?', ok: 'Yes'
+	                }
+			
+	                echo "Initiating deployment"
             }
         }
     }
