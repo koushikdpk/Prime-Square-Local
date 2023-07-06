@@ -45,8 +45,9 @@ pipeline{
                              to: 'csiripurapu@primesoft.net',
                              replyTo: env.CHANGE_AUTHOR_EMAIL,
                              mimeType: 'text/html'
+			input message: 'Do you want to approve the deployment?', ok: 'Yes'
                 }
-                input message: 'Do you want to approve the deployment?', ok: 'Yes'
+                
 
 	    }
     }
