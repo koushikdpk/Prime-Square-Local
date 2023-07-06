@@ -19,7 +19,7 @@ pipeline{
                 }
             steps{
                 echo "im running on this node : $NODE_NAME"
-                echo "im running with this build number: $BUILD_NUMBER"
+                echo "im runningss with this build number: $BUILD_NUMBER"
                 echo "Hi from $env.stage"
             }
         } 
