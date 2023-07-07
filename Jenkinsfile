@@ -38,3 +38,24 @@ label 'ps-local'
         }
  }
 }
+stage('Uploading to JFrog Artifactory') {
+            steps{
+            rtUpload(
+            serverId:"jfrog-jenkins",
+            spec: '''{
+            "files":[{
+            "pattern": "module-a/target/*.jar",
+            "target": "Test-Repo"
+            }]
+            }
+            ''',
+            )
+            }
+        }
+        stage('Archieving the Artifact'){
+        steps{
+        archiveArtifacts artifacts: 'module-a/target/*.jar', followSymlinks: false
+        }
+        }
+    }
+}
