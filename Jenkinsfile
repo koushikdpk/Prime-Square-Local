@@ -36,8 +36,7 @@ label 'ps-local'
                 }
             }
         }
- }
-}
+ 
 stage('Uploading to JFrog Artifactory') {
             steps{
             rtUpload(
