@@ -1,4 +1,3 @@
-import org.jfrog.hudson.pipeline.Artifactory
 pipeline {
 
 agent {
@@ -38,29 +37,24 @@ label 'ps-local'
             }
         }
  
-     stage('Uploading to JFrog Artifactory') {
-            steps {
-                script {
-                    def server = Artifactory.server('jfrog-jenkins') // Replace 'jfrog-jenkins' with your Artifactory server ID
-
-                    def uploadSpec = """{
-                        "files": [
-                            {
-                                "pattern": "module-a/target/*.jar",
-                                "target": "Test-Repo/"
-                            }
-                        ]
-                    }"""
-
-                    server.upload(uploadSpec)
-                }
+stage('Uploading to JFrog Artifactory') {
+            steps{
+            rtUpload(
+            serverId:"jfrog-jenkins",
+            spec: '''{
+            "files":[{
+            "pattern": "module-a/target/*.jar",
+            "target": "Test-Repo"
+            }]
+            }
+            ''',
+            )
             }
         }
-
-        stage('Archiving the Artifact') {
-            steps {
-                archiveArtifacts artifacts: 'module-a/target/*.jar', followSymlinks: false
-            }
+        stage('Archieving the Artifact'){
+        steps{
+        archiveArtifacts artifacts: 'module-a/target/*.jar', followSymlinks: false
+        }
         }
     }
 }
