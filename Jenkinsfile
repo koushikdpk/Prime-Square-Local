@@ -46,8 +46,7 @@ stage('Uploading to JFrog Artifactory') {
             "pattern": "module-a/target/*.jar",
             "target": "Test-Repo"
             }]
-            }
-            ''',
+            }'''
             )
             }
         }
