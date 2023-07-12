@@ -1,0 +1,70 @@
+pipeline {
+    agent any
+    
+    stages {
+  stage('ManagerApproval') {
+            steps {
+            script {
+                //to check the userid
+                if (isApprovedByManager()=="${env.Manager}") {
+                    echo 'Pipeline approved by manager. Continuing with the pipeline.'
+                } else {
+                    error("Pipeline approval can only be done by the manager.")
+                }
+            }
+        }
+    }
+}
+post {
+    always {
+        script {
+         def emailBody = """
+          <html>
+          <style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 4px;
+}
+</style>
+          <body>
+          <p> Hi Team</p>
+          <p>Please find the Build Results of Jenkins Pipeline</p>
+            <table style="background-color:#FFEBCD">
+              <tr>
+                <th>JobName</th>
+                <th>Status</th>
+                <th>Build Details</th>
+              </tr>
+              <tr>
+                <td>${env.JOB_NAME}</td>
+                <td>${currentBuild.currentResult}</td>
+                <td><a href="${env.BUILD_URL}">Build-${env.BUILD_NUMBER}</a></td>
+              </tr>
+            </table><br><br><br>
+            
+            
+           <p> Thanks & Regards</p> 
+           <p> PrimeSquare DevOps </p>
+            
+          </body>
+          </html>
+        """
+        def mailSubject ="Jenkins Build:${env.BUILD_NUMBER} ${currentBuild.currentResult}: ${env.JOB_NAME}"
+        mail(
+        to: "${env.recepient}",
+        subject: mailSubject,
+        body: emailBody,
+        mimeType: 'text/html'
+           )
+        }
+    }
+}
+}
+   
+def isApprovedByManager() {
+    def approvalUser = input(id: 'pipelineApproval', message: 'Pipeline Approval', submitterParameter: 'approver')
+    return approvalUser
+}
