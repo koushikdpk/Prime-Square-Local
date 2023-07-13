@@ -9,7 +9,7 @@ pipeline {
                 if (isApprovedByManager()=="${env.Manager}") {
                     echo 'Pipeline approved by manager. Continuing with the pipeline.'
                 } else {
-                    error("Pipeline approval can only be done by the manager.")
+                    error("Pipeline approval can only  done by the manager.")
                 }
             }
         }
