@@ -4,7 +4,5 @@ b=25
 c=a+b+d
 
 
-c=a+b
-e=a+b+c
 f= a+b+e+d
 
