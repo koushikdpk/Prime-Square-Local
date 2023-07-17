@@ -5,4 +5,4 @@ c=a+b+d
 
 
 f= a+b+e+d
-
+d= s+c
